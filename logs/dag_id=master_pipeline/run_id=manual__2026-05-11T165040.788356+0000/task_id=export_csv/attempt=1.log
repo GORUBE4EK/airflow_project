@@ -1,0 +1,13 @@
+{"timestamp":"2026-05-11T16:54:54.459627Z","level":"info","event":"DAG bundles loaded: dags-folder, example_dags","logger":"airflow.dag_processing.bundles.manager.DagBundlesManager","filename":"manager.py","lineno":209}
+{"timestamp":"2026-05-11T16:54:54.461183Z","level":"info","event":"Filling up the DagBag from /opt/airflow/dags/main.py","logger":"airflow.dag_processing.dagbag.BundleDagBag","filename":"dagbag.py","lineno":469}
+{"timestamp":"2026-05-11T16:54:54.507870Z","level":"info","event":"Task instance is in running state","logger":"task.stdout"}
+{"timestamp":"2026-05-11T16:54:54.508502Z","level":"info","event":" Previous state of the Task instance: TaskInstanceState.QUEUED","logger":"task.stdout"}
+{"timestamp":"2026-05-11T16:54:54.508839Z","level":"info","event":"Current task name:export_csv","logger":"task.stdout"}
+{"timestamp":"2026-05-11T16:54:54.509090Z","level":"info","event":"Dag name:master_pipeline","logger":"task.stdout"}
+{"timestamp":"2026-05-11T16:54:54.643476Z","level":"info","event":"Triggering Dag Run.","trigger_dag_id":"dump_f101_to_csv","logger":"task","filename":"task_runner.py","lineno":1422}
+{"timestamp":"2026-05-11T16:54:54.670240Z","level":"info","event":"Dag Run triggered successfully.","trigger_dag_id":"dump_f101_to_csv","logger":"task","filename":"task_runner.py","lineno":1457}
+{"timestamp":"2026-05-11T16:54:54.686780Z","level":"info","event":"Waiting for dag run to complete execution in allowed state.","dag_id":"dump_f101_to_csv","run_id":"manual__2026-05-11T16:54:54.508392+00:00","allowed_state":["success"],"logger":"task","filename":"task_runner.py","lineno":1483}
+{"timestamp":"2026-05-11T16:55:54.692602Z","level":"info","event":"DagRun finished with allowed state.","dag_id":"dump_f101_to_csv","state":"success","logger":"task","filename":"task_runner.py","lineno":1508}
+{"timestamp":"2026-05-11T16:55:54.742996Z","level":"info","event":"Task instance in success state","logger":"task.stdout"}
+{"timestamp":"2026-05-11T16:55:54.743438Z","level":"info","event":" Previous state of the Task instance: TaskInstanceState.RUNNING","logger":"task.stdout"}
+{"timestamp":"2026-05-11T16:55:54.743992Z","level":"info","event":"Task operator:<Task(TriggerDagRunOperator): export_csv>","logger":"task.stdout"}

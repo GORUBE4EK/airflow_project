@@ -1,0 +1,18 @@
+{"timestamp":"2026-05-09T11:29:56.822330Z","level":"info","event":"DAG bundles loaded: dags-folder, example_dags","logger":"airflow.dag_processing.bundles.manager.DagBundlesManager","filename":"manager.py","lineno":209}
+{"timestamp":"2026-05-09T11:29:56.824519Z","level":"info","event":"Filling up the DagBag from /opt/airflow/dags/insert_data.py","logger":"airflow.dag_processing.dagbag.BundleDagBag","filename":"dagbag.py","lineno":469}
+{"timestamp":"2026-05-09T11:29:56.970547Z","level":"info","event":"Task instance is in running state","logger":"task.stdout"}
+{"timestamp":"2026-05-09T11:29:56.971113Z","level":"info","event":" Previous state of the Task instance: TaskInstanceState.QUEUED","logger":"task.stdout"}
+{"timestamp":"2026-05-09T11:29:56.971427Z","level":"info","event":"Current task name:md_ledger_account_s","logger":"task.stdout"}
+{"timestamp":"2026-05-09T11:29:56.971667Z","level":"info","event":"Dag name:insert_data","logger":"task.stdout"}
+{"timestamp":"2026-05-09T11:29:56.975202Z","level":"error","event":"========== ФУНКЦИЯ ВЫЗВАНА ДЛЯ: md_ledger_account_s ==========","logger":"task.stderr"}
+{"timestamp":"2026-05-09T11:29:56.975616Z","level":"info","event":"Начинаю загрузку файла: /opt/airflow/files/md_ledger_account_s.csv","logger":"unusual_prefix_4656ebc6d97aeaad115f29b22e867693223e54e7_insert_data","filename":"insert_data.py","lineno":22}
+{"timestamp":"2026-05-09T11:29:56.997469Z","level":"info","event":"Файл успешно прочитан с кодировкой: utf-8","logger":"unusual_prefix_4656ebc6d97aeaad115f29b22e867693223e54e7_insert_data","filename":"insert_data.py","lineno":35}
+{"timestamp":"2026-05-09T11:29:56.997899Z","level":"info","event":"Колонки: ['chapter', 'chapter_name', 'section_number', 'section_name', 'subsection_name', 'ledger1_account', 'ledger1_account_name', 'ledger_account', 'ledger_account_name', 'characteristic', 'start_date', 'end_date']","logger":"unusual_prefix_4656ebc6d97aeaad115f29b22e867693223e54e7_insert_data","filename":"insert_data.py","lineno":45}
+{"timestamp":"2026-05-09T11:29:56.998072Z","level":"info","event":"Загружено строк: 18","logger":"unusual_prefix_4656ebc6d97aeaad115f29b22e867693223e54e7_insert_data","filename":"insert_data.py","lineno":46}
+{"timestamp":"2026-05-09T11:29:57.134121Z","level":"info","event":"Старые данные в DS.md_ledger_account_s удалены","logger":"unusual_prefix_4656ebc6d97aeaad115f29b22e867693223e54e7_insert_data","filename":"insert_data.py","lineno":69}
+{"timestamp":"2026-05-09T11:29:57.134346Z","level":"info","event":"Вставляю данные в DS.md_ledger_account_s","logger":"unusual_prefix_4656ebc6d97aeaad115f29b22e867693223e54e7_insert_data","filename":"insert_data.py","lineno":71}
+{"timestamp":"2026-05-09T11:29:57.163527Z","level":"info","event":"Данные успешно вставлены в md_ledger_account_s","logger":"unusual_prefix_4656ebc6d97aeaad115f29b22e867693223e54e7_insert_data","filename":"insert_data.py","lineno":80}
+{"timestamp":"2026-05-09T11:29:57.164026Z","level":"info","event":"Done. Returned value was: None","logger":"airflow.task.operators.airflow.providers.standard.operators.python.PythonOperator","filename":"python.py","lineno":229}
+{"timestamp":"2026-05-09T11:29:57.209583Z","level":"info","event":"Task instance in success state","logger":"task.stdout"}
+{"timestamp":"2026-05-09T11:29:57.210582Z","level":"info","event":" Previous state of the Task instance: TaskInstanceState.RUNNING","logger":"task.stdout"}
+{"timestamp":"2026-05-09T11:29:57.211042Z","level":"info","event":"Task operator:<Task(PythonOperator): md_ledger_account_s>","logger":"task.stdout"}

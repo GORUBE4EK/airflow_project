@@ -1,0 +1,12 @@
+{"timestamp":"2026-05-11T10:05:42.349848Z","level":"info","event":"DAG bundles loaded: dags-folder, example_dags","logger":"airflow.dag_processing.bundles.manager.DagBundlesManager","filename":"manager.py","lineno":209}
+{"timestamp":"2026-05-11T10:05:42.355706Z","level":"info","event":"Filling up the DagBag from /opt/airflow/dags/dump_f101_to_csv.py","logger":"airflow.dag_processing.dagbag.BundleDagBag","filename":"dagbag.py","lineno":469}
+{"timestamp":"2026-05-11T10:05:42.413586Z","level":"info","event":"Task instance is in running state","logger":"task.stdout"}
+{"timestamp":"2026-05-11T10:05:42.414102Z","level":"info","event":" Previous state of the Task instance: TaskInstanceState.QUEUED","logger":"task.stdout"}
+{"timestamp":"2026-05-11T10:05:42.414401Z","level":"info","event":"Current task name:dump_f101","logger":"task.stdout"}
+{"timestamp":"2026-05-11T10:05:42.414626Z","level":"info","event":"Dag name:dump_f101_to_csv","logger":"task.stdout"}
+{"timestamp":"2026-05-11T10:05:42.505311Z","level":"info","event":"Загружено строк: 18","logger":"unusual_prefix_d8937507c34d3a71e516d500b1bfeae1ca4de8d9_dump_f101_to_csv","filename":"dump_f101_to_csv.py","lineno":18}
+{"timestamp":"2026-05-11T10:05:42.513016Z","level":"info","event":"Сохранено в /opt/airflow/files/dm_f101_round_f.csv","logger":"unusual_prefix_d8937507c34d3a71e516d500b1bfeae1ca4de8d9_dump_f101_to_csv","filename":"dump_f101_to_csv.py","lineno":22}
+{"timestamp":"2026-05-11T10:05:42.513227Z","level":"info","event":"Done. Returned value was: None","logger":"airflow.task.operators.airflow.providers.standard.operators.python.PythonOperator","filename":"python.py","lineno":229}
+{"timestamp":"2026-05-11T10:05:42.528650Z","level":"info","event":"Task instance in success state","logger":"task.stdout"}
+{"timestamp":"2026-05-11T10:05:42.528956Z","level":"info","event":" Previous state of the Task instance: TaskInstanceState.RUNNING","logger":"task.stdout"}
+{"timestamp":"2026-05-11T10:05:42.529243Z","level":"info","event":"Task operator:<Task(PythonOperator): dump_f101>","logger":"task.stdout"}

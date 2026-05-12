@@ -1,0 +1,35 @@
+{"timestamp":"2026-05-09T09:34:50.351000Z","level":"info","event":"DAG bundles loaded: dags-folder, example_dags","logger":"airflow.dag_processing.bundles.manager.DagBundlesManager","filename":"manager.py","lineno":209}
+{"timestamp":"2026-05-09T09:34:50.375784Z","level":"info","event":"Filling up the DagBag from /opt/airflow/dags/insert_data.py","logger":"airflow.dag_processing.dagbag.BundleDagBag","filename":"dagbag.py","lineno":469}
+{"timestamp":"2026-05-09T09:34:50.675726Z","level":"info","event":"Task instance is in running state","logger":"task.stdout"}
+{"timestamp":"2026-05-09T09:34:50.687665Z","level":"info","event":" Previous state of the Task instance: TaskInstanceState.QUEUED","logger":"task.stdout"}
+{"timestamp":"2026-05-09T09:34:50.697720Z","level":"info","event":"Current task name:ft_balance_f","logger":"task.stdout"}
+{"timestamp":"2026-05-09T09:34:50.700954Z","level":"info","event":"Dag name:insert_data","logger":"task.stdout"}
+{"timestamp":"2026-05-09T09:34:50.705547Z","level":"error","event":"========== ФУНКЦИЯ ВЫЗВАНА ДЛЯ: ft_balance_f ==========","logger":"task.stderr"}
+{"timestamp":"2026-05-09T09:34:50.681429Z","level":"info","event":"Начинаю загрузку файла: /opt/airflow/files/ft_balance_f.csv","logger":"unusual_prefix_4656ebc6d97aeaad115f29b22e867693223e54e7_insert_data","filename":"insert_data.py","lineno":22}
+{"timestamp":"2026-05-09T09:34:50.800184Z","level":"info","event":"Колонки: ['on_date', 'account_rk', 'currency_rk', 'balance_out']","logger":"unusual_prefix_4656ebc6d97aeaad115f29b22e867693223e54e7_insert_data","filename":"insert_data.py","lineno":34}
+{"timestamp":"2026-05-09T09:34:50.800364Z","level":"info","event":"Загружено строк: 114","logger":"unusual_prefix_4656ebc6d97aeaad115f29b22e867693223e54e7_insert_data","filename":"insert_data.py","lineno":35}
+{"timestamp":"2026-05-09T09:34:51.117567Z","level":"info","event":"Старые данные в DS.ft_balance_f удалены","logger":"unusual_prefix_4656ebc6d97aeaad115f29b22e867693223e54e7_insert_data","filename":"insert_data.py","lineno":48}
+{"timestamp":"2026-05-09T09:34:51.117771Z","level":"info","event":"Вставляю данные в DS.ft_balance_f","logger":"unusual_prefix_4656ebc6d97aeaad115f29b22e867693223e54e7_insert_data","filename":"insert_data.py","lineno":50}
+{"timestamp":"2026-05-09T09:34:51.182813Z","level":"info","event":"Данные успешно вставлены в ft_balance_f","logger":"unusual_prefix_4656ebc6d97aeaad115f29b22e867693223e54e7_insert_data","filename":"insert_data.py","lineno":59}
+{"timestamp":"2026-05-09T09:34:51.184707Z","level":"info","event":"Done. Returned value was: None","logger":"airflow.task.operators.airflow.providers.standard.operators.python.PythonOperator","filename":"python.py","lineno":229}
+{"timestamp":"2026-05-09T09:34:51.211707Z","level":"info","event":"Task instance in success state","logger":"task.stdout"}
+{"timestamp":"2026-05-09T09:34:51.212137Z","level":"info","event":" Previous state of the Task instance: TaskInstanceState.RUNNING","logger":"task.stdout"}
+{"timestamp":"2026-05-09T09:34:51.212418Z","level":"info","event":"Task operator:<Task(PythonOperator): ft_balance_f>","logger":"task.stdout"}
+{"timestamp":"2026-05-09T11:34:26.359655Z","level":"info","event":"DAG bundles loaded: dags-folder, example_dags","logger":"airflow.dag_processing.bundles.manager.DagBundlesManager","filename":"manager.py","lineno":209}
+{"timestamp":"2026-05-09T11:34:26.362194Z","level":"info","event":"Filling up the DagBag from /opt/airflow/dags/insert_data.py","logger":"airflow.dag_processing.dagbag.BundleDagBag","filename":"dagbag.py","lineno":469}
+{"timestamp":"2026-05-09T11:34:26.460632Z","level":"info","event":"Task instance is in running state","logger":"task.stdout"}
+{"timestamp":"2026-05-09T11:34:26.461161Z","level":"info","event":" Previous state of the Task instance: TaskInstanceState.QUEUED","logger":"task.stdout"}
+{"timestamp":"2026-05-09T11:34:26.461458Z","level":"info","event":"Current task name:ft_balance_f","logger":"task.stdout"}
+{"timestamp":"2026-05-09T11:34:26.461779Z","level":"info","event":"Dag name:insert_data","logger":"task.stdout"}
+{"timestamp":"2026-05-09T11:34:26.464224Z","level":"error","event":"========== ФУНКЦИЯ ВЫЗВАНА ДЛЯ: ft_balance_f ==========","logger":"task.stderr"}
+{"timestamp":"2026-05-09T11:34:26.464416Z","level":"info","event":"Начинаю загрузку файла: /opt/airflow/files/ft_balance_f.csv","logger":"unusual_prefix_4656ebc6d97aeaad115f29b22e867693223e54e7_insert_data","filename":"insert_data.py","lineno":22}
+{"timestamp":"2026-05-09T11:34:26.474586Z","level":"info","event":"Файл успешно прочитан с кодировкой: utf-8","logger":"unusual_prefix_4656ebc6d97aeaad115f29b22e867693223e54e7_insert_data","filename":"insert_data.py","lineno":35}
+{"timestamp":"2026-05-09T11:34:26.474884Z","level":"info","event":"Колонки: ['on_date', 'account_rk', 'currency_rk', 'balance_out']","logger":"unusual_prefix_4656ebc6d97aeaad115f29b22e867693223e54e7_insert_data","filename":"insert_data.py","lineno":45}
+{"timestamp":"2026-05-09T11:34:26.475021Z","level":"info","event":"Загружено строк: 114","logger":"unusual_prefix_4656ebc6d97aeaad115f29b22e867693223e54e7_insert_data","filename":"insert_data.py","lineno":46}
+{"timestamp":"2026-05-09T11:34:26.633668Z","level":"info","event":"Старые данные в DS.ft_balance_f удалены","logger":"unusual_prefix_4656ebc6d97aeaad115f29b22e867693223e54e7_insert_data","filename":"insert_data.py","lineno":69}
+{"timestamp":"2026-05-09T11:34:26.633871Z","level":"info","event":"Вставляю данные в DS.ft_balance_f","logger":"unusual_prefix_4656ebc6d97aeaad115f29b22e867693223e54e7_insert_data","filename":"insert_data.py","lineno":71}
+{"timestamp":"2026-05-09T11:34:26.678033Z","level":"info","event":"Данные успешно вставлены в ft_balance_f","logger":"unusual_prefix_4656ebc6d97aeaad115f29b22e867693223e54e7_insert_data","filename":"insert_data.py","lineno":80}
+{"timestamp":"2026-05-09T11:34:26.678388Z","level":"info","event":"Done. Returned value was: None","logger":"airflow.task.operators.airflow.providers.standard.operators.python.PythonOperator","filename":"python.py","lineno":229}
+{"timestamp":"2026-05-09T11:34:26.733614Z","level":"info","event":"Task instance in success state","logger":"task.stdout"}
+{"timestamp":"2026-05-09T11:34:26.734049Z","level":"info","event":" Previous state of the Task instance: TaskInstanceState.RUNNING","logger":"task.stdout"}
+{"timestamp":"2026-05-09T11:34:26.734357Z","level":"info","event":"Task operator:<Task(PythonOperator): ft_balance_f>","logger":"task.stdout"}

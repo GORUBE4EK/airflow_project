@@ -1,0 +1,18 @@
+{"timestamp":"2026-05-09T11:29:56.686090Z","level":"info","event":"DAG bundles loaded: dags-folder, example_dags","logger":"airflow.dag_processing.bundles.manager.DagBundlesManager","filename":"manager.py","lineno":209}
+{"timestamp":"2026-05-09T11:29:56.688126Z","level":"info","event":"Filling up the DagBag from /opt/airflow/dags/insert_data.py","logger":"airflow.dag_processing.dagbag.BundleDagBag","filename":"dagbag.py","lineno":469}
+{"timestamp":"2026-05-09T11:29:56.807706Z","level":"info","event":"Task instance is in running state","logger":"task.stdout"}
+{"timestamp":"2026-05-09T11:29:56.808554Z","level":"info","event":" Previous state of the Task instance: TaskInstanceState.QUEUED","logger":"task.stdout"}
+{"timestamp":"2026-05-09T11:29:56.809512Z","level":"info","event":"Current task name:ft_posting_f","logger":"task.stdout"}
+{"timestamp":"2026-05-09T11:29:56.810124Z","level":"info","event":"Dag name:insert_data","logger":"task.stdout"}
+{"timestamp":"2026-05-09T11:29:56.810823Z","level":"error","event":"========== ФУНКЦИЯ ВЫЗВАНА ДЛЯ: ft_posting_f ==========","logger":"task.stderr"}
+{"timestamp":"2026-05-09T11:29:56.810983Z","level":"info","event":"Начинаю загрузку файла: /opt/airflow/files/ft_posting_f.csv","logger":"unusual_prefix_4656ebc6d97aeaad115f29b22e867693223e54e7_insert_data","filename":"insert_data.py","lineno":22}
+{"timestamp":"2026-05-09T11:29:57.013439Z","level":"info","event":"Файл успешно прочитан с кодировкой: utf-8","logger":"unusual_prefix_4656ebc6d97aeaad115f29b22e867693223e54e7_insert_data","filename":"insert_data.py","lineno":35}
+{"timestamp":"2026-05-09T11:29:57.014068Z","level":"info","event":"Колонки: ['oper_date', 'credit_account_rk', 'debet_account_rk', 'credit_amount', 'debet_amount']","logger":"unusual_prefix_4656ebc6d97aeaad115f29b22e867693223e54e7_insert_data","filename":"insert_data.py","lineno":45}
+{"timestamp":"2026-05-09T11:29:57.014339Z","level":"info","event":"Загружено строк: 33892","logger":"unusual_prefix_4656ebc6d97aeaad115f29b22e867693223e54e7_insert_data","filename":"insert_data.py","lineno":46}
+{"timestamp":"2026-05-09T11:29:57.256152Z","level":"info","event":"Старые данные в DS.ft_posting_f удалены","logger":"unusual_prefix_4656ebc6d97aeaad115f29b22e867693223e54e7_insert_data","filename":"insert_data.py","lineno":69}
+{"timestamp":"2026-05-09T11:29:57.256625Z","level":"info","event":"Вставляю данные в DS.ft_posting_f","logger":"unusual_prefix_4656ebc6d97aeaad115f29b22e867693223e54e7_insert_data","filename":"insert_data.py","lineno":71}
+{"timestamp":"2026-05-09T11:29:58.343432Z","level":"info","event":"Данные успешно вставлены в ft_posting_f","logger":"unusual_prefix_4656ebc6d97aeaad115f29b22e867693223e54e7_insert_data","filename":"insert_data.py","lineno":80}
+{"timestamp":"2026-05-09T11:29:58.350695Z","level":"info","event":"Done. Returned value was: None","logger":"airflow.task.operators.airflow.providers.standard.operators.python.PythonOperator","filename":"python.py","lineno":229}
+{"timestamp":"2026-05-09T11:29:58.379775Z","level":"info","event":"Task instance in success state","logger":"task.stdout"}
+{"timestamp":"2026-05-09T11:29:58.380210Z","level":"info","event":" Previous state of the Task instance: TaskInstanceState.RUNNING","logger":"task.stdout"}
+{"timestamp":"2026-05-09T11:29:58.380622Z","level":"info","event":"Task operator:<Task(PythonOperator): ft_posting_f>","logger":"task.stdout"}

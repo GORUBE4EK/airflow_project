@@ -1,0 +1,16 @@
+{"timestamp":"2026-05-09T09:09:39.164852Z","level":"info","event":"DAG bundles loaded: dags-folder, example_dags","logger":"airflow.dag_processing.bundles.manager.DagBundlesManager","filename":"manager.py","lineno":209}
+{"timestamp":"2026-05-09T09:09:39.179720Z","level":"info","event":"Filling up the DagBag from /opt/airflow/dags/insert_data.py","logger":"airflow.dag_processing.dagbag.BundleDagBag","filename":"dagbag.py","lineno":469}
+{"timestamp":"2026-05-09T09:09:39.619285Z","level":"info","event":"Task instance is in running state","logger":"task.stdout"}
+{"timestamp":"2026-05-09T09:09:39.620460Z","level":"info","event":" Previous state of the Task instance: TaskInstanceState.QUEUED","logger":"task.stdout"}
+{"timestamp":"2026-05-09T09:09:39.621044Z","level":"info","event":"Current task name:md_account_d","logger":"task.stdout"}
+{"timestamp":"2026-05-09T09:09:39.623941Z","level":"info","event":"Dag name:insert_data","logger":"task.stdout"}
+{"timestamp":"2026-05-09T09:09:39.630713Z","level":"error","event":"========== ФУНКЦИЯ ВЫЗВАНА ДЛЯ: md_account_d ==========","logger":"task.stderr"}
+{"timestamp":"2026-05-09T09:09:39.630910Z","level":"info","event":"Начинаю загрузку файла: /opt/airflow/files/md_account_d.csv","logger":"unusual_prefix_4656ebc6d97aeaad115f29b22e867693223e54e7_insert_data","filename":"insert_data.py","lineno":22}
+{"timestamp":"2026-05-09T09:09:39.652793Z","level":"info","event":"Колонки: ['data_actual_date', 'data_actual_end_date', 'account_rk', 'account_number', 'char_type', 'currency_rk', 'currency_code']","logger":"unusual_prefix_4656ebc6d97aeaad115f29b22e867693223e54e7_insert_data","filename":"insert_data.py","lineno":34}
+{"timestamp":"2026-05-09T09:09:39.653020Z","level":"info","event":"Загружено строк: 112","logger":"unusual_prefix_4656ebc6d97aeaad115f29b22e867693223e54e7_insert_data","filename":"insert_data.py","lineno":35}
+{"timestamp":"2026-05-09T09:09:39.752980Z","level":"info","event":"Вставляю данные в DS.md_account_d","logger":"unusual_prefix_4656ebc6d97aeaad115f29b22e867693223e54e7_insert_data","filename":"insert_data.py","lineno":44}
+{"timestamp":"2026-05-09T09:09:40.101935Z","level":"info","event":"Данные успешно вставлены в md_account_d","logger":"unusual_prefix_4656ebc6d97aeaad115f29b22e867693223e54e7_insert_data","filename":"insert_data.py","lineno":53}
+{"timestamp":"2026-05-09T09:09:40.102201Z","level":"info","event":"Done. Returned value was: None","logger":"airflow.task.operators.airflow.providers.standard.operators.python.PythonOperator","filename":"python.py","lineno":229}
+{"timestamp":"2026-05-09T09:09:40.163691Z","level":"info","event":"Task instance in success state","logger":"task.stdout"}
+{"timestamp":"2026-05-09T09:09:40.164021Z","level":"info","event":" Previous state of the Task instance: TaskInstanceState.RUNNING","logger":"task.stdout"}
+{"timestamp":"2026-05-09T09:09:40.165267Z","level":"info","event":"Task operator:<Task(PythonOperator): md_account_d>","logger":"task.stdout"}

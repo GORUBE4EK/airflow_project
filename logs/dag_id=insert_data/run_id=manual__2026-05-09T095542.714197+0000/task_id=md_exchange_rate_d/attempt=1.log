@@ -1,0 +1,18 @@
+{"timestamp":"2026-05-09T09:55:44.749628Z","level":"info","event":"DAG bundles loaded: dags-folder, example_dags","logger":"airflow.dag_processing.bundles.manager.DagBundlesManager","filename":"manager.py","lineno":209}
+{"timestamp":"2026-05-09T09:55:44.752307Z","level":"info","event":"Filling up the DagBag from /opt/airflow/dags/insert_data.py","logger":"airflow.dag_processing.dagbag.BundleDagBag","filename":"dagbag.py","lineno":469}
+{"timestamp":"2026-05-09T09:55:44.861060Z","level":"info","event":"Task instance is in running state","logger":"task.stdout"}
+{"timestamp":"2026-05-09T09:55:44.861817Z","level":"info","event":" Previous state of the Task instance: TaskInstanceState.QUEUED","logger":"task.stdout"}
+{"timestamp":"2026-05-09T09:55:44.862202Z","level":"info","event":"Current task name:md_exchange_rate_d","logger":"task.stdout"}
+{"timestamp":"2026-05-09T09:55:44.862479Z","level":"info","event":"Dag name:insert_data","logger":"task.stdout"}
+{"timestamp":"2026-05-09T09:55:44.864160Z","level":"error","event":"========== ФУНКЦИЯ ВЫЗВАНА ДЛЯ: md_exchange_rate_d ==========","logger":"task.stderr"}
+{"timestamp":"2026-05-09T09:55:44.864251Z","level":"info","event":"Начинаю загрузку файла: /opt/airflow/files/md_exchange_rate_d.csv","logger":"unusual_prefix_4656ebc6d97aeaad115f29b22e867693223e54e7_insert_data","filename":"insert_data.py","lineno":22}
+{"timestamp":"2026-05-09T09:55:44.874459Z","level":"info","event":"Колонки: ['data_actual_date', 'data_actual_end_date', 'currency_rk', 'reduced_cource', 'code_iso_num']","logger":"unusual_prefix_4656ebc6d97aeaad115f29b22e867693223e54e7_insert_data","filename":"insert_data.py","lineno":37}
+{"timestamp":"2026-05-09T09:55:44.874668Z","level":"info","event":"Загружено строк: 892","logger":"unusual_prefix_4656ebc6d97aeaad115f29b22e867693223e54e7_insert_data","filename":"insert_data.py","lineno":38}
+{"timestamp":"2026-05-09T09:55:44.879100Z","level":"warning","event":"Удалено 432 полных дубликатов в md_exchange_rate_d. Исторические записи сохранены.","logger":"unusual_prefix_4656ebc6d97aeaad115f29b22e867693223e54e7_insert_data","filename":"insert_data.py","lineno":49}
+{"timestamp":"2026-05-09T09:55:45.030598Z","level":"info","event":"Старые данные в DS.md_exchange_rate_d удалены","logger":"unusual_prefix_4656ebc6d97aeaad115f29b22e867693223e54e7_insert_data","filename":"insert_data.py","lineno":61}
+{"timestamp":"2026-05-09T09:55:45.030820Z","level":"info","event":"Вставляю данные в DS.md_exchange_rate_d","logger":"unusual_prefix_4656ebc6d97aeaad115f29b22e867693223e54e7_insert_data","filename":"insert_data.py","lineno":63}
+{"timestamp":"2026-05-09T09:55:45.089595Z","level":"info","event":"Данные успешно вставлены в md_exchange_rate_d","logger":"unusual_prefix_4656ebc6d97aeaad115f29b22e867693223e54e7_insert_data","filename":"insert_data.py","lineno":72}
+{"timestamp":"2026-05-09T09:55:45.090006Z","level":"info","event":"Done. Returned value was: None","logger":"airflow.task.operators.airflow.providers.standard.operators.python.PythonOperator","filename":"python.py","lineno":229}
+{"timestamp":"2026-05-09T09:55:45.122213Z","level":"info","event":"Task instance in success state","logger":"task.stdout"}
+{"timestamp":"2026-05-09T09:55:45.122753Z","level":"info","event":" Previous state of the Task instance: TaskInstanceState.RUNNING","logger":"task.stdout"}
+{"timestamp":"2026-05-09T09:55:45.123167Z","level":"info","event":"Task operator:<Task(PythonOperator): md_exchange_rate_d>","logger":"task.stdout"}

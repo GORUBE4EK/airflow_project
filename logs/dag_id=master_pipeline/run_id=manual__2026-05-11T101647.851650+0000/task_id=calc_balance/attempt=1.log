@@ -1,0 +1,13 @@
+{"timestamp":"2026-05-11T10:19:51.959082Z","level":"info","event":"DAG bundles loaded: dags-folder, example_dags","logger":"airflow.dag_processing.bundles.manager.DagBundlesManager","filename":"manager.py","lineno":209}
+{"timestamp":"2026-05-11T10:19:51.960699Z","level":"info","event":"Filling up the DagBag from /opt/airflow/dags/main.py","logger":"airflow.dag_processing.dagbag.BundleDagBag","filename":"dagbag.py","lineno":469}
+{"timestamp":"2026-05-11T10:19:52.003012Z","level":"info","event":"Task instance is in running state","logger":"task.stdout"}
+{"timestamp":"2026-05-11T10:19:52.003604Z","level":"info","event":" Previous state of the Task instance: TaskInstanceState.QUEUED","logger":"task.stdout"}
+{"timestamp":"2026-05-11T10:19:52.003893Z","level":"info","event":"Current task name:calc_balance","logger":"task.stdout"}
+{"timestamp":"2026-05-11T10:19:52.004127Z","level":"info","event":"Dag name:master_pipeline","logger":"task.stdout"}
+{"timestamp":"2026-05-11T10:19:52.132421Z","level":"info","event":"Triggering Dag Run.","trigger_dag_id":"fill_balance_jan2018","logger":"task","filename":"task_runner.py","lineno":1422}
+{"timestamp":"2026-05-11T10:19:52.170499Z","level":"info","event":"Dag Run triggered successfully.","trigger_dag_id":"fill_balance_jan2018","logger":"task","filename":"task_runner.py","lineno":1457}
+{"timestamp":"2026-05-11T10:19:52.187169Z","level":"info","event":"Waiting for dag run to complete execution in allowed state.","dag_id":"fill_balance_jan2018","run_id":"manual__2026-05-11T10:19:52.003597+00:00","allowed_state":["success"],"logger":"task","filename":"task_runner.py","lineno":1483}
+{"timestamp":"2026-05-11T10:20:52.191817Z","level":"info","event":"DagRun finished with allowed state.","dag_id":"fill_balance_jan2018","state":"success","logger":"task","filename":"task_runner.py","lineno":1508}
+{"timestamp":"2026-05-11T10:20:52.234040Z","level":"info","event":"Task instance in success state","logger":"task.stdout"}
+{"timestamp":"2026-05-11T10:20:52.234408Z","level":"info","event":" Previous state of the Task instance: TaskInstanceState.RUNNING","logger":"task.stdout"}
+{"timestamp":"2026-05-11T10:20:52.234758Z","level":"info","event":"Task operator:<Task(TriggerDagRunOperator): calc_balance>","logger":"task.stdout"}

@@ -1,0 +1,13 @@
+{"timestamp":"2026-05-11T09:58:22.568983Z","level":"info","event":"DAG bundles loaded: dags-folder, example_dags","logger":"airflow.dag_processing.bundles.manager.DagBundlesManager","filename":"manager.py","lineno":209}
+{"timestamp":"2026-05-11T09:58:22.570552Z","level":"info","event":"Filling up the DagBag from /opt/airflow/dags/fill_turnover_jan2018.py","logger":"airflow.dag_processing.dagbag.BundleDagBag","filename":"dagbag.py","lineno":469}
+{"timestamp":"2026-05-11T09:58:22.621669Z","level":"info","event":"Task instance is in running state","logger":"task.stdout"}
+{"timestamp":"2026-05-11T09:58:22.622070Z","level":"info","event":" Previous state of the Task instance: TaskInstanceState.QUEUED","logger":"task.stdout"}
+{"timestamp":"2026-05-11T09:58:22.622476Z","level":"info","event":"Current task name:turnover_2018_01_20","logger":"task.stdout"}
+{"timestamp":"2026-05-11T09:58:22.624370Z","level":"info","event":"Dag name:fill_turnover_jan2018","logger":"task.stdout"}
+{"timestamp":"2026-05-11T09:58:22.676738Z","level":"info","event":"Running statement: SELECT \"DM\".fill_account_turnover_f(DATE '2018-01-20');, parameters: None","logger":"airflow.task.hooks.airflow.providers.postgres.hooks.postgres.PostgresHook","filename":"sql.py","lineno":861}
+{"timestamp":"2026-05-11T09:58:23.046159Z","level":"info","event":"Rows affected: 1","logger":"airflow.task.hooks.airflow.providers.postgres.hooks.postgres.PostgresHook","filename":"sql.py","lineno":879}
+{"timestamp":"2026-05-11T09:58:23.048107Z","level":"info","event":"Витрина оборотов заполнена за 2018-01-20","logger":"unusual_prefix_c1e24fdc290c6de45dc02f717dccfe1a5033ed25_fill_turnover_jan2018","filename":"fill_turnover_jan2018.py","lineno":19}
+{"timestamp":"2026-05-11T09:58:23.048328Z","level":"info","event":"Done. Returned value was: None","logger":"airflow.task.operators.airflow.providers.standard.operators.python.PythonOperator","filename":"python.py","lineno":229}
+{"timestamp":"2026-05-11T09:58:23.064510Z","level":"info","event":"Task instance in success state","logger":"task.stdout"}
+{"timestamp":"2026-05-11T09:58:23.064856Z","level":"info","event":" Previous state of the Task instance: TaskInstanceState.RUNNING","logger":"task.stdout"}
+{"timestamp":"2026-05-11T09:58:23.065169Z","level":"info","event":"Task operator:<Task(PythonOperator): turnover_2018_01_20>","logger":"task.stdout"}
