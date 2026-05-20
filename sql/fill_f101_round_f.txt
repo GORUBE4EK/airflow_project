@@ -1,0 +1,126 @@
+CREATE OR REPLACE PROCEDURE "DM".fill_f101_round_f(i_OnDate DATE)
+LANGUAGE plpgsql
+AS $$
+DECLARE
+    v_start_time TIMESTAMP;
+    v_end_time TIMESTAMP;
+    v_from_date DATE;
+    v_to_date DATE;
+    v_prev_date DATE;
+    v_count INTEGER;
+    v_rub_codes INTEGER[] := ARRAY[810, 643];
+BEGIN
+    v_start_time := clock_timestamp();
+    
+    v_to_date := i_OnDate - INTERVAL '1 day';
+    v_from_date := DATE_TRUNC('month', v_to_date)::DATE;
+    v_prev_date := v_from_date - INTERVAL '1 day';
+    
+    INSERT INTO "LOGS".LOGS (procedure_name, start_time, message)
+    VALUES ('DM.fill_f101_round_f', v_start_time, 
+            'Начало расчёта 101 формы за период с ' || v_from_date || ' по ' || v_to_date);
+    
+    DELETE FROM "DM".DM_F101_ROUND_F
+    WHERE from_date = v_from_date 
+      AND to_date = v_to_date;
+
+    INSERT INTO "DM".DM_F101_ROUND_F (
+        from_date, to_date, chapter, ledger_account, characteristic,
+        balance_in_rub, balance_in_val, balance_in_total,
+        turn_deb_rub, turn_deb_val, turn_deb_total,
+        turn_cre_rub, turn_cre_val, turn_cre_total,
+        balance_out_rub, balance_out_val, balance_out_total
+    )
+    WITH all_accounts AS (
+        SELECT DISTINCT account_rk
+        FROM (
+            SELECT account_rk FROM "DM".DM_ACCOUNT_BALANCE_F WHERE on_date = v_prev_date
+            UNION
+            SELECT account_rk FROM "DM".DM_ACCOUNT_TURNOVER_F WHERE on_date BETWEEN v_from_date AND v_to_date
+            UNION
+            SELECT account_rk FROM "DM".DM_ACCOUNT_BALANCE_F WHERE on_date = v_to_date
+        ) t
+    ),
+    account_info AS (
+    	SELECT DISTINCT ON (acc.account_rk)
+        	acc.account_rk,
+        	COALESCE(a.account_number, '00000') AS account_number,
+        	COALESCE(a.char_type, 'А') AS char_type,
+	        CAST(COALESCE(a.currency_code, '810') AS INTEGER) AS currency_code_int
+    	FROM all_accounts acc
+    	LEFT JOIN "DS".MD_ACCOUNT_D a ON a.account_rk = acc.account_rk
+    	ORDER BY acc.account_rk, 
+             	CASE WHEN a.account_rk IS NOT NULL AND v_to_date 
+                      	BETWEEN a.data_actual_date AND a.data_actual_end_date THEN 0 ELSE 1 END,
+             	a.data_actual_date DESC
+	),
+    account_data AS (
+        SELECT 
+            ai.account_rk,
+            CAST(LEFT(ai.account_number, 5) AS INTEGER) AS ledger_account_int,
+            ai.char_type,
+            ai.currency_code_int,
+            COALESCE(bi.balance_out_rub, 0) AS bi_rub,
+            COALESCE(bo.balance_out_rub, 0) AS bo_rub,
+            COALESCE(t.deb_rub, 0) AS deb_rub,
+            COALESCE(t.cre_rub, 0) AS cre_rub
+        FROM account_info ai
+        LEFT JOIN "DM".DM_ACCOUNT_BALANCE_F bi ON bi.account_rk = ai.account_rk AND bi.on_date = v_prev_date
+        LEFT JOIN "DM".DM_ACCOUNT_BALANCE_F bo ON bo.account_rk = ai.account_rk AND bo.on_date = v_to_date
+        LEFT JOIN (
+            SELECT account_rk, 
+                   SUM(debet_amount_rub) AS deb_rub, 
+                   SUM(credit_amount_rub) AS cre_rub
+            FROM "DM".DM_ACCOUNT_TURNOVER_F
+            WHERE on_date BETWEEN v_from_date AND v_to_date
+            GROUP BY account_rk
+        ) t ON t.account_rk = ai.account_rk
+        WHERE COALESCE(bi.balance_out_rub, 0) != 0 
+           OR COALESCE(bo.balance_out_rub, 0) != 0 
+           OR COALESCE(t.deb_rub, 0) != 0 
+           OR COALESCE(t.cre_rub, 0) != 0
+    ),
+    ledger_info AS (
+        SELECT DISTINCT ON (ledger_account)
+            ledger_account,
+            chapter,
+            characteristic
+        FROM "DS".MD_LEDGER_ACCOUNT_S
+        WHERE start_date <= v_to_date
+          AND (end_date IS NULL OR end_date >= v_from_date)
+        ORDER BY ledger_account, start_date DESC
+    )
+    SELECT 
+        v_from_date,
+        v_to_date,
+        COALESCE(li.chapter, '') AS chapter,
+        ad.ledger_account_int,
+        COALESCE(li.characteristic, MAX(ad.char_type)) AS characteristic,
+        SUM(CASE WHEN ad.currency_code_int = ANY(v_rub_codes) THEN ad.bi_rub ELSE 0 END),
+        SUM(CASE WHEN ad.currency_code_int != ALL(v_rub_codes) THEN ad.bi_rub ELSE 0 END),
+        SUM(ad.bi_rub),
+        SUM(CASE WHEN ad.currency_code_int = ANY(v_rub_codes) THEN ad.deb_rub ELSE 0 END),
+        SUM(CASE WHEN ad.currency_code_int != ALL(v_rub_codes) THEN ad.deb_rub ELSE 0 END),
+        SUM(ad.deb_rub),
+        SUM(CASE WHEN ad.currency_code_int = ANY(v_rub_codes) THEN ad.cre_rub ELSE 0 END),
+        SUM(CASE WHEN ad.currency_code_int != ALL(v_rub_codes) THEN ad.cre_rub ELSE 0 END),
+        SUM(ad.cre_rub),
+        SUM(CASE WHEN ad.currency_code_int = ANY(v_rub_codes) THEN ad.bo_rub ELSE 0 END),
+        SUM(CASE WHEN ad.currency_code_int != ALL(v_rub_codes) THEN ad.bo_rub ELSE 0 END),
+        SUM(ad.bo_rub)
+    FROM account_data ad
+    LEFT JOIN ledger_info li ON li.ledger_account = ad.ledger_account_int
+	WHERE ad.ledger_account_int != 0
+    GROUP BY ad.ledger_account_int, li.chapter, li.characteristic;
+
+    GET DIAGNOSTICS v_count = ROW_COUNT;
+    
+    v_end_time := clock_timestamp();
+    
+    INSERT INTO "LOGS".LOGS (procedure_name, start_time, end_time, message)
+    VALUES ('DM.fill_f101_round_f', v_start_time, v_end_time, 
+            'Расчёт завершён. Добавлено ' || v_count || ' записей');
+    
+    RAISE NOTICE '101 форма заполнена. Добавлено % записей', v_count;
+END;
+$$;

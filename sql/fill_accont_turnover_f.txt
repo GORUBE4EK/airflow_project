@@ -1,0 +1,70 @@
+CREATE OR REPLACE FUNCTION "DM".fill_account_turnover_f(i_OnDate DATE)
+RETURNS VOID
+AS $$  
+DECLARE 
+	v_count INT;
+	v_start_time TIMESTAMP;
+    v_end_time TIMESTAMP;
+BEGIN
+	v_start_time := clock_timestamp();
+
+	INSERT INTO "LOGS".LOGS (procedure_name, start_time, message)
+    VALUES ('DM.fill_account_turnover_f', v_start_time, 
+            'Начало заполнения витрины оборотов по лицевым счетам за ' || i_OnDate);
+	
+	DELETE FROM "DM".DM_ACCOUNT_TURNOVER_F
+    WHERE on_date = i_OnDate;
+	
+	INSERT INTO "DM".DM_ACCOUNT_TURNOVER_F
+    SELECT 
+        i_OnDate AS on_date,
+        t.account_rk,
+        SUM(t.credit_amount) AS credit_amount,
+        SUM(t.credit_amount * COALESCE(t.reduced_cource, 1)) AS credit_amount_rub,
+        SUM(t.debet_amount) AS debet_amount,
+        SUM(t.debet_amount * COALESCE(t.reduced_cource, 1)) AS debet_amount_rub
+	FROM (
+		SELECT 
+            p.credit_account_rk AS account_rk,
+            p.credit_amount,
+            0 AS debet_amount,
+            er.reduced_cource
+        FROM "DS".FT_POSTING_F AS p
+        LEFT JOIN "DS".MD_ACCOUNT_D AS a 
+            ON a.account_rk = p.credit_account_rk 
+            AND i_OnDate BETWEEN a.data_actual_date AND a.data_actual_end_date
+        LEFT JOIN "DS".MD_EXCHANGE_RATE_D AS  er 
+            ON er.currency_rk = a.currency_rk 
+            AND i_OnDate BETWEEN er.data_actual_date AND er.data_actual_end_date
+        WHERE p.oper_date = i_OnDate 
+
+		UNION ALL 
+
+		SELECT 
+            p.debet_account_rk AS account_rk,
+            0 AS credit_amount,
+            p.debet_amount,
+            er.reduced_cource
+        FROM "DS".FT_POSTING_F AS p
+        LEFT JOIN "DS".MD_ACCOUNT_D AS a 
+            ON a.account_rk = p.debet_account_rk 
+            AND i_OnDate BETWEEN a.data_actual_date AND a.data_actual_end_date
+        LEFT JOIN "DS".MD_EXCHANGE_RATE_D AS er 
+            ON er.currency_rk = a.currency_rk 
+            AND i_OnDate BETWEEN er.data_actual_date AND er.data_actual_end_date
+        WHERE p.oper_date = i_OnDate
+    ) AS t
+    GROUP BY t.account_rk;
+
+    GET DIAGNOSTICS v_count = ROW_COUNT;
+
+	v_end_time := clock_timestamp();
+
+	INSERT INTO "LOGS".LOGS (procedure_name, start_time, end_time, message)
+    VALUES ('DM.fill_account_turnover_f', v_start_time, v_end_time, 
+            'Заполнение завершено. Добавлено ' || v_count || ' записей');
+	
+    RAISE NOTICE 'Витрина заполнена за %: добавлено % записей', i_OnDate, v_count;
+		
+END;
+$$ LANGUAGE plpgsql;

@@ -1,0 +1,66 @@
+CREATE OR REPLACE PROCEDURE "DM".fill_account_balance_f(i_OnDate DATE)
+LANGUAGE plpgsql
+AS $$
+DECLARE
+    v_prev_date DATE;
+    v_count INTEGER;
+	v_start_time TIMESTAMP;
+    v_end_time TIMESTAMP;
+BEGIN
+    v_start_time := clock_timestamp();
+	
+	v_prev_date := i_OnDate - INTERVAL '1 day';
+
+	INSERT INTO "LOGS".LOGS (procedure_name, start_time, message)
+    VALUES ('DM.fill_account_balance_f', v_start_time, 
+            'Начало заполнения витрины остатков по лицевым счетам за ' || i_OnDate);
+	
+    DELETE FROM "DM".DM_ACCOUNT_BALANCE_F
+    WHERE on_date = i_OnDate;
+
+    INSERT INTO "DM".DM_ACCOUNT_BALANCE_F (on_date, account_rk, balance_out, balance_out_rub)
+    SELECT 
+        i_OnDate AS on_date,
+        a.account_rk,
+        CASE 
+            WHEN a.char_type = 'А' THEN
+                COALESCE(prev.balance_out, 0) 
+                + COALESCE(t.debet_amount, 0) 
+                - COALESCE(t.credit_amount, 0)
+            WHEN a.char_type = 'П' THEN
+                COALESCE(prev.balance_out, 0) 
+                - COALESCE(t.debet_amount, 0) 
+                + COALESCE(t.credit_amount, 0)
+            ELSE 0
+        END AS balance_out,
+        CASE 
+            WHEN a.char_type = 'А' THEN
+                COALESCE(prev.balance_out_rub, 0) 
+                + COALESCE(t.debet_amount_rub, 0) 
+                - COALESCE(t.credit_amount_rub, 0)
+            WHEN a.char_type = 'П' THEN
+                COALESCE(prev.balance_out_rub, 0) 
+                - COALESCE(t.debet_amount_rub, 0) 
+                + COALESCE(t.credit_amount_rub, 0)
+            ELSE 0
+        END AS balance_out_rub
+    FROM "DS".MD_ACCOUNT_D AS a
+    LEFT JOIN "DM".DM_ACCOUNT_BALANCE_F AS prev 
+        ON prev.account_rk = a.account_rk 
+        AND prev.on_date = v_prev_date
+    LEFT JOIN "DM".DM_ACCOUNT_TURNOVER_F AS t 
+        ON t.account_rk = a.account_rk 
+        AND t.on_date = i_OnDate
+    WHERE i_OnDate BETWEEN a.data_actual_date AND a.data_actual_end_date;
+
+    GET DIAGNOSTICS v_count = ROW_COUNT;
+
+	v_end_time := clock_timestamp();
+
+	INSERT INTO "LOGS".LOGS (procedure_name, start_time, end_time, message)
+    VALUES ('DM.fill_account_balance_f', v_start_time, v_end_time, 
+            'Заполнение завершено. Добавлено ' || v_count || ' записей');
+	
+    RAISE NOTICE 'Витрина остатков заполнена за %: добавлено % записей', i_OnDate, v_count;
+END;
+$$;
